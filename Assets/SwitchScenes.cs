@@ -7,15 +7,18 @@ using UnityEngine.SceneManagement;
 public class SwitchScenes : MonoBehaviour
 {
     public Scenes currentScene = Scenes.location1;
-    private void Update()
-    {   
-        if (Input.GetKey(KeyCode.A) && SceneManager.GetActiveScene().name != "InTransit")//go to transit scene if not in transit scene
+    public float border = 15f;
+
+    public void NextLocation()
+    {
+        if (SceneManager.GetActiveScene().name != "InTransit")//go to transit scene if not in transit scene
         {
             SceneManager.LoadScene(0);
             switch (currentScene)
             {
                 case Scenes.location1:
                     currentScene = Scenes.location2;
+                    gameObject.transform.position = new Vector3(-border, 0, 0);
                     break;
                 case Scenes.location2:
                     currentScene = Scenes.location3;
@@ -27,15 +30,14 @@ public class SwitchScenes : MonoBehaviour
                     currentScene = Scenes.location5;
                     break;
             }
-            Debug.Log(" next scene is " + currentScene);
         }
-        if (Input.GetKeyDown(KeyCode.D))//go to next scene
+        else if (SceneManager.GetActiveScene().name == "InTransit")//go to next scene
         {
-            Debug.Log("currentscene " + (int)currentScene);
-            int cs = (int)currentScene;
-            SceneManager.LoadScene(cs);
+            SceneManager.LoadScene((int)currentScene);
+            gameObject.transform.position = new Vector3(border, 0, 0);
+            gameObject.GetComponent<Train>().StopEngine();
         }
-    }        
+    }
     public enum Scenes
     {
         TransitScene,
