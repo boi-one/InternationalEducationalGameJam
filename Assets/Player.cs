@@ -5,15 +5,15 @@ public class Player : MonoBehaviour
     void Update()
     {
         Vector3 dir = Vector3.zero;
-
+        
         if (Input.GetKey(KeyCode.D))
-            dir.x = -1;
+            dir.x = 1;
         if (Input.GetKey(KeyCode.A))
-            Move(new Vector3(-1,0));
+            dir.x = -1;
         if (Input.GetKey(KeyCode.W))
-            Move(new Vector3(0,1));
+            dir.y = 1;
         if (Input.GetKey(KeyCode.S))
-            Move(new Vector3(0,-1));
+            dir.y = -1;
         
         Move(dir);
         MoveUpdate();
@@ -21,18 +21,23 @@ public class Player : MonoBehaviour
     void Move(Vector3 dir)
     {
         if (dest != null) return;
-        dest = transform.position + dir;
+        dest = dir;
     }
     void MoveUpdate()
     {
         if (dest == null) return;
 
-        if (Vector3.Distance(transform.position, (Vector3)dest) <= 5f * Time.deltaTime)
+        float ma = 15f * Time.deltaTime;
+
+        if (((Vector3)dest).magnitude <= ma)
         {
-            transform.position = (Vector3)dest;
+            transform.position += (Vector3)dest;
             dest = null;
         }
         else
-            transform.position += ((Vector3)dest - transform.position).normalized * 5f * Time.deltaTime;
+        {
+            transform.position += ((Vector3)dest).normalized * ma;
+            dest /= 1 + ma;
+        }
     }
 }
