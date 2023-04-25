@@ -6,8 +6,11 @@ using UnityEngine;
 public class NPCInteraction : PromptAction
 {
     public TMP_Text dialogue;
+    public GameObject mark;
     public override void Interact()
     {
-        dialogue.text = "Dialogue.";
+        Debug.Log("bbb");
+        dialogue.text = "Dialogue.Dialogue.Dialogue.Dialogue.Dialogue.Dialogue.Dialogue.Dialogue.Dialogue.Dialogue.Dialogue.Dialogue.Dialogue.Dialogue.";
+        mark.SetActive(false);
     }
 }

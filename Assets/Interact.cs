@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using TMPro;
 using UnityEngine;
 
 public class Interact : MonoBehaviour
 {
-    public GameObject wellgo, minego, bucketgo, pickaxego;
+    public GameObject wellgo, minego;
     public Resource well, mine;
     public Item coalCollected = new Item(10);
     public Item brimstoneCollected = new Item(50);
     public Item waterCollected = new Item(5);
     float collect;
-    public float cooldown = 1f;
+    float cooldown;
     Resource[] resources = new Resource[2];
+    public TMP_Text UI;
+    public bool pickup = false;
     private void Awake()
     {
         well = new Resource(wellgo, 20, 1f);
@@ -22,11 +25,11 @@ public class Interact : MonoBehaviour
     }
     private void Update()
     {
+        UI.text = $"Coal: {coalCollected.amount} Brimstone: {brimstoneCollected.amount} Water: {waterCollected.amount}";
         foreach (Resource r in resources)
         {
-            if (Vector3.Distance(r.go.transform.position, gameObject.transform.position) < 2f && Input.GetKeyDown(KeyCode.E))
+            if (Vector3.Distance(r.go.transform.position, gameObject.transform.position) < 1f && Input.GetKeyDown(KeyCode.E))
             {
-                Debug.Log($"coal {coalCollected.amount} brimstone {brimstoneCollected.amount} water {waterCollected.amount} resources {r.amount}");
                 if (Time.time > collect && !r.exhausted)
                 {
                     cooldown = r.cooldown;   
