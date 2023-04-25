@@ -3309,6 +3309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 477d156c64609e4469dc640179f89b55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  border: 0
 --- !u!212 &1425694848
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3400,6 +3401,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentScene: 1
+  border: 50
 --- !u!1001 &9030698170610461168
 PrefabInstance:
   m_ObjectHideFlags: 0

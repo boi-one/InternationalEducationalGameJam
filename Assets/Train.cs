@@ -7,7 +7,7 @@ public class Train : MonoBehaviour
 {
     Vector3 velocity;
     bool run = false;
-    float border;
+    public float border = 50f;
     private void Start()
     {
         border = gameObject.GetComponent<SwitchScenes>().border;
@@ -15,14 +15,9 @@ public class Train : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
-        {
-            ;
             ((run = !run)?(Action)StartEngine:(Action)StopEngine)();
-        }
         if (run)
-        {
             AccelerateDeccelerate(2);
-        }
         else if(!run && velocity.x >= 2)
         {
             AccelerateDeccelerate(-4);
