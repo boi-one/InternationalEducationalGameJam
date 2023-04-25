@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.Tilemaps;
+
 public class Player : MonoBehaviour
 {
     Vector3 dest;
@@ -21,6 +23,10 @@ public class Player : MonoBehaviour
     }
     void Move(Vector3 dir)
     {
+        Tilemap t = GameObject.Find("Map").transform.Find("Wall").GetComponent<Tilemap>();
+        if (t != null && t.HasTile(t.WorldToCell(transform.position + dir)))
+            return;
+        
         if (destL != 0) return;
         dest = dir;
         destL = 1;
