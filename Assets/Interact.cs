@@ -3,16 +3,10 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using UnityEngine;
 
-
-interface Use
-{
-    void UseItem();
-} 
 public class Interact : MonoBehaviour
 {
     public GameObject wellgo, minego, bucketgo, pickaxego;
     public Resource well, mine;
-    public Equipment bucket, pickaxe;
     public Item coalCollected = new Item(10);
     public Item brimstoneCollected = new Item(50);
     public Item waterCollected = new Item(5);
@@ -21,13 +15,10 @@ public class Interact : MonoBehaviour
     Resource[] resources = new Resource[2];
     private void Awake()
     {
-        well = new Resource(wellgo, 20);
-        mine = new Resource(minego, 100);
-        bucket = new Equipment(bucketgo);
-        pickaxe = new Equipment(pickaxego);
+        well = new Resource(wellgo, 20, 1f);
+        mine = new Resource(minego, 100, 3f);
         resources[0] = well;
         resources[1] = mine;
-        bucket.UseItem();  
     }
     private void Update()
     {
@@ -35,14 +26,17 @@ public class Interact : MonoBehaviour
         {
             if (Vector3.Distance(r.go.transform.position, gameObject.transform.position) < 2f && Input.GetKeyDown(KeyCode.E))
             {
-                Debug.Log($"coal {coalCollected} brimstone {brimstoneCollected} water {waterCollected} resources {r.amount}");
+                Debug.Log($"coal {coalCollected.amount} brimstone {brimstoneCollected.amount} water {waterCollected.amount} resources {r.amount}");
                 if (Time.time > collect && !r.exhausted)
                 {
+                    cooldown = r.cooldown;   
                     r.amount--;
                     if (r == mine && Random.Range(0, 10) != 5)
                         coalCollected.amount++;
                     else if (r == mine && Random.Range(0, 10) == 5)
                         brimstoneCollected.amount++;
+                    else if (r == well)
+                        waterCollected.amount++;
                     collect = Time.time + cooldown;
                 }
             }
@@ -52,37 +46,25 @@ public class Interact : MonoBehaviour
 public class Resource
 {
     public int amount;
+    public float cooldown;
     public bool exhausted;
     public GameObject go;
-    public Resource(GameObject _go, int _amount)
+    public Resource(GameObject _go, int _amount, float _cooldown)
     {
         go = _go;
         amount = _amount;
+        cooldown = _cooldown;
     }
 }
 public class Item
 {
+    public GameObject go;
     public int amount;
     int potency;
 
     public Item(int _potency)
     {
         potency = _potency;
-    }
-}
-
-public class Equipment : Use
-{
-    GameObject go;
-
-    public void UseItem()
-    {
-
-    }
-
-    public Equipment(GameObject _go)
-    {
-        go = _go;
     }
 }
 

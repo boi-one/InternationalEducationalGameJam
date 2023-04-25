@@ -561,7 +561,4 @@ MonoBehaviour:
   minego: {fileID: 1874875024}
   bucketgo: {fileID: 0}
   pickaxego: {fileID: 0}
-  coalCollected: 0
-  brimstoneCollected: 0
-  waterCollected: 0
   cooldown: 1
