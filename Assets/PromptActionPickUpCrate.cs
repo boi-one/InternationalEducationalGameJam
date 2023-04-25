@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class PickUpCrate : PromptAction
+public class PromptActionPickUpCrate : PromptAction
 {
     public GameObject player;
     public GameObject Prompt;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class ResourceInteract : PromptAction
+public class PromptActionResourceInteract : PromptAction
 {
     public TMP_Text dialogue;
     public override void Interact()
