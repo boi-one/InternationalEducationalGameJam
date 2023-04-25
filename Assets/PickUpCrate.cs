@@ -8,17 +8,13 @@ public class PickUpCrate : PromptAction
     public GameObject player;
     public override void Interact()
     {
-        bool pickup = player.GetComponent<Interact>().pickup;
-        if (!pickup)
+        if (!player.GetComponent<Interact>().pickup)
         {
             gameObject.transform.SetParent(player.transform, true);
-            gameObject.transform.position = new Vector3(player.transform.position.x, player.transform.position.y+1);
+            gameObject.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 1);
+            player.GetComponent<Interact>().pickup = true;
         }
-        if (Input.GetKey(KeyCode.E))
-        {
-            Debug.Log(pickup);  
-            if (pickup)
-                gameObject.transform.parent = null;
-        }
+        else
+            player.GetComponent<Interact>().pickup = false;
     }
 }

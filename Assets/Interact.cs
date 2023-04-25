@@ -28,21 +28,30 @@ public class Interact : MonoBehaviour
         UI.text = $"Coal: {coalCollected.amount} Brimstone: {brimstoneCollected.amount} Water: {waterCollected.amount}";
         foreach (Resource r in resources)
         {
-            if (Vector3.Distance(r.go.transform.position, gameObject.transform.position) < 1f && Input.GetKeyDown(KeyCode.E))
+            if (r != null)
             {
-                if (Time.time > collect && !r.exhausted)
+                if (Vector3.Distance(r.go.transform.position, gameObject.transform.position) < 1.5f && Input.GetKeyDown(KeyCode.E))
                 {
-                    cooldown = r.cooldown;   
-                    r.amount--;
-                    if (r == mine && Random.Range(0, 10) != 5)
+                    Debug.Log("mine");
+                    if (Time.time > collect && !r.exhausted)
+                    {
+                        cooldown = r.cooldown;
+                        r.amount--;
+                        if (r == mine && Random.Range(0, 10) != 5)
                         coalCollected.amount++;
-                    else if (r == mine && Random.Range(0, 10) == 5)
+                        else if (r == mine && Random.Range(0, 10) == 5)
                         brimstoneCollected.amount++;
-                    else if (r == well)
-                        waterCollected.amount++;
-                    collect = Time.time + cooldown;
+                        else if (r == well)
+                            waterCollected.amount++;
+                        collect = Time.time + cooldown;
+                    }
                 }
             }
+        }
+        if (Input.GetKeyDown(KeyCode.E) && pickup)
+        {
+            Transform child = transform.GetChild(0);
+            child.transform.SetParent(null, true);
         }
     }
 }

@@ -9,7 +9,6 @@ public class NPCInteraction : PromptAction
     public GameObject mark;
     public override void Interact()
     {
-        Debug.Log("bbb");
         dialogue.text = "Dialogue.Dialogue.Dialogue.Dialogue.Dialogue.Dialogue.Dialogue.Dialogue.Dialogue.Dialogue.Dialogue.Dialogue.Dialogue.Dialogue.";
         mark.SetActive(false);
     }
