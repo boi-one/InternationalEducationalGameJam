@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Interact : MonoBehaviour
 {
-    public GameObject wellgo, minego;
+    public GameObject wellgo, minego, train, childgo;
     public Resource well, mine;
     public Item coalCollected = new Item(10);
     public Item brimstoneCollected = new Item(50);
@@ -32,7 +33,6 @@ public class Interact : MonoBehaviour
             {
                 if (Vector3.Distance(r.go.transform.position, gameObject.transform.position) < 1.5f && Input.GetKeyDown(KeyCode.E))
                 {
-                    Debug.Log("mine");
                     if (Time.time > collect && !r.exhausted)
                     {
                         cooldown = r.cooldown;
@@ -44,13 +44,22 @@ public class Interact : MonoBehaviour
                         else if (r == well)
                             waterCollected.amount++;
                         collect = Time.time + cooldown;
+                        if (r.amount == 0)
+                            r.exhausted = true;
                     }
                 }
             }
         }
+        
         if (Input.GetKeyDown(KeyCode.E) && pickup)
         {
-            Transform child = transform.GetChild(0);
+            Transform child = gameObject.transform.GetChild(0);
+            /*if(train.GetComponent<TrainParenting>().t != null) //is null?
+            {
+                Tilemap t = train.GetComponent<TrainParenting>().t;
+                if (t.HasTile(t.WorldToCell(childgo.transform.position)))
+                    train.GetComponent<TrainParenting>().TakeWithTrain.Add(childgo);
+            }*/
             child.transform.SetParent(null, true);
         }
     }
@@ -58,6 +67,7 @@ public class Interact : MonoBehaviour
 public class Resource
 {
     public int amount;
+    public int value;
     public float cooldown;
     public bool exhausted;
     public GameObject go;
@@ -72,7 +82,7 @@ public class Item
 {
     public GameObject go;
     public int amount;
-    int potency;
+    public int potency;
 
     public Item(int _potency)
     {

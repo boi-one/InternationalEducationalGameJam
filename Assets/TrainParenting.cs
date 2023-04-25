@@ -6,7 +6,7 @@ public class TrainParenting : MonoBehaviour
 {
     public List<GameObject> TakeWithTrain = new List<GameObject>();
 
-    Tilemap t;
+    public Tilemap t;
     void Awake() => t = transform.Find("Map").Find("TrainFloor").GetComponent<Tilemap>();
     
     void Update()

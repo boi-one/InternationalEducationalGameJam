@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1169798313d18049901d087eb730ea5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue: {fileID: 1636880159}
+  dialogue: {fileID: 1125298239}
 --- !u!1 &223274036
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,7 +246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1169798313d18049901d087eb730ea5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue: {fileID: 0}
+  dialogue: {fileID: 1636880159}
 --- !u!1 &310871964
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,6 +556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 971653438}
+  Prompt: {fileID: 2019162939}
 --- !u!212 &876639107
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -717,8 +718,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wellgo: {fileID: 168579569}
   minego: {fileID: 290166252}
+  train: {fileID: 1425694846}
+  childgo: {fileID: 876639105}
   UI: {fileID: 1361745442}
   pickup: 0
+--- !u!114 &1125298239 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6877924118387450493, guid: b2301d1abd01dcc49bcd94d3d4cfcdf4, type: 3}
+  m_PrefabInstance: {fileID: 1500896776}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1136763686 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6877924118387450493, guid: b2301d1abd01dcc49bcd94d3d4cfcdf4, type: 3}
@@ -7286,6 +7300,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2019162939 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1865175701140638854, guid: b2301d1abd01dcc49bcd94d3d4cfcdf4, type: 3}
+  m_PrefabInstance: {fileID: 2117678302}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2116334008 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9030698171206677575, guid: b2301d1abd01dcc49bcd94d3d4cfcdf4, type: 3}
@@ -7427,11 +7446,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2137475616}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3342ceb0b33ac834d9b33164f457f49d, type: 3}
+  m_Script: {fileID: 11500000, guid: 42c98a3a7823f5b4c91215bbb1e99e29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue: {fileID: 1136763686}
-  mark: {fileID: 0}
+  player: {fileID: 971653438}
+  ui: {fileID: 1136763686}
+  fuelAmount: 0
+  waterAmount: 0
 --- !u!1001 &9030698170610461168
 PrefabInstance:
   m_ObjectHideFlags: 0

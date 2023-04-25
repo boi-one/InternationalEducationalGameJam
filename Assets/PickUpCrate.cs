@@ -6,8 +6,10 @@ using UnityEngine;
 public class PickUpCrate : PromptAction
 {
     public GameObject player;
+    public GameObject Prompt;
     public override void Interact()
     {
+        //Prompt.SetActive(false); haal de prompt weg
         if (!player.GetComponent<Interact>().pickup)
         {
             gameObject.transform.SetParent(player.transform, true);
