@@ -24,7 +24,6 @@ public class Train : MonoBehaviour
         }
         if (gameObject.transform.position.x > border)
             gameObject.GetComponent<SwitchScenes>().NextLocation();
-
     }
     public void StartEngine()
     {
