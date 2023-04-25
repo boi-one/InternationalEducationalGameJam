@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class NPCInteraction : PromptAction
 {
+    public TMP_Text dialogue;
     public override void Interact()
     {
-        gameObject.GetComponent<Canvas>().GetComponent<Prompt>().GetComponent<TMP_Text>().text = "Dialogue.";
+        dialogue.text = "Dialogue.";
     }
 }
