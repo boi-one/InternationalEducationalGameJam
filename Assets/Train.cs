@@ -23,7 +23,7 @@ public class Train : MonoBehaviour
         {
             AccelerateDeccelerate(-4);
         }
-        if (gameObject.transform.position.x > border)
+        if (gameObject.transform.position.x > GameObject.Find("EndPoint").transform.position.x)
             gameObject.GetComponent<SwitchScenes>().NextLocation();
     }
     public void StartEngine()
@@ -34,10 +34,12 @@ public class Train : MonoBehaviour
     {
         run = false;
     }
-    void AccelerateDeccelerate(float speed)
+    void AccelerateDeccelerate(float amount)
     {
-        Debug.Log(speed);
-        velocity += new Vector3(speed, 0) * Time.deltaTime;
         transform.position += velocity * Time.deltaTime;
+        
+        if (amount > 0 && velocity.x > 15) return;
+        
+        velocity += new Vector3(amount, 0) * Time.deltaTime;
     }
 }

@@ -266,7 +266,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 16
   m_TargetDisplay: 0
 --- !u!114 &9030698170621509744
 MonoBehaviour:
@@ -358,6 +358,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PromptObject: {fileID: 0}
+  IsActive: 0
+  PromptAction: {fileID: 0}
 --- !u!1 &9030698171306840645
 GameObject:
   m_ObjectHideFlags: 0
