@@ -1,7 +1,8 @@
 using UnityEngine;
 public class Player : MonoBehaviour
 {
-    Vector3? dest;
+    Vector3 dest;
+    float destL = 0;
     void Update()
     {
         Vector3 dir = Vector3.zero;
@@ -20,24 +21,34 @@ public class Player : MonoBehaviour
     }
     void Move(Vector3 dir)
     {
-        if (dest != null) return;
+        if (destL != 0) return;
         dest = dir;
+        destL = 1;
     }
     void MoveUpdate()
     {
-        if (dest == null) return;
+        if (destL == 0) return;
 
         float ma = 15f * Time.deltaTime;
 
-        if (((Vector3)dest).magnitude <= ma)
+        if (destL <= ma)
         {
-            transform.position += (Vector3)dest;
-            dest = null;
+            Centralize();
+            destL = 0;
         }
         else
         {
-            transform.position += ((Vector3)dest).normalized * ma;
-            dest /= 1 + ma;
+            transform.position += dest.normalized * ma;
+            destL -= ma;
         }
+    }
+
+    void Centralize()
+    {
+        if (transform.parent == null)
+            transform.position = new Vector3(Mathf.Floor(transform.position.x) + 0.5f, Mathf.Floor(transform.position.y) + 0.5f);
+        else
+            
+            transform.position = transform.parent.position + new Vector3(Mathf.Floor(transform.localPosition.x) + 0.5f, Mathf.Floor(transform.localPosition.y) + 0.5f);
     }
 }
