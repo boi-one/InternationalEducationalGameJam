@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     }
     void Move(Vector3 dir)
     {
-        Tilemap t = GameObject.Find("Map").transform.Find("Wall").GetComponent<Tilemap>();
+        Tilemap t = GameObject.Find("Map")?.transform.Find("Wall")?.GetComponent<Tilemap>();
         if (t != null && t.HasTile(t.WorldToCell(transform.position + dir)))
             return;
         
