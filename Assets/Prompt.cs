@@ -15,6 +15,11 @@ public class Prompt : MonoBehaviour
         PromptObject = transform.Find("Canvas").Find("Prompt").gameObject;
         PromptAction = GetComponent<PromptAction>();
     }
+
+    void OnDestroy()
+    {
+        PromptSystem.Prompts.Remove(this);
+    }
 }
 public abstract class PromptAction : MonoBehaviour
 {
