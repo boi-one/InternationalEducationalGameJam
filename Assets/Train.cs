@@ -5,17 +5,18 @@ using UnityEngine;
 
 public class Train : MonoBehaviour
 {
+    public static Train refer;
+    
     Vector3 velocity;
-    bool run = false;
+    public bool run = false;
     public float border = 50f;
     private void Start()
     {
+        refer = this;
         border = gameObject.GetComponent<SwitchScenes>().border;
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-            ((run = !run)?(Action)StartEngine:(Action)StopEngine)();
         if (run)
             AccelerateDeccelerate(2);
         else if(!run && velocity.x >= 2)
