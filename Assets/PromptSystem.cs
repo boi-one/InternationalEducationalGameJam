@@ -6,17 +6,20 @@ public class PromptSystem : MonoBehaviour
     public static readonly List<Prompt> Prompts = new List<Prompt>();
 
     static Player Player;
-
-    void Awake()
-    {
-        Player = GameObject.FindObjectOfType<Player>();
-    }
+    void Awake() => Player = GameObject.FindObjectOfType<Player>();
+    
     void Update()
     {
         // show or unshow prompts as you get near objects
         foreach (Prompt h in Prompts)
         {
-            bool a = Vector3.Distance(Player.transform.position, h.transform.position) <= 1.5f;
+            bool a = false;
+            foreach (Vector3 dir in new[] { new Vector3(-1, 0), new Vector3(1, 0), new Vector3(0, 1), new Vector3(0, -1), })
+            {
+                if (Player.transform.position + dir == h.transform.position)
+                    a = true;
+            }
+            
             h.PromptObject.SetActive(a);
             h.IsActive = a;
         }
