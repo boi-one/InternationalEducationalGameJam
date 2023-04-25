@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PromptSystem : MonoBehaviour
 {
-    public static List<Prompt> Huds = new List<Prompt>();
+    public static readonly List<Prompt> Prompts = new List<Prompt>();
 
     static Player Player;
 
@@ -13,12 +13,21 @@ public class PromptSystem : MonoBehaviour
     }
     void Update()
     {
-        foreach (Prompt h in Huds)
+        // show or unshow prompts as you get near objects
+        foreach (Prompt h in Prompts)
         {
-            h.PromptObject.SetActive(false);
-            if (Vector3.Distance(Player.transform.position, h.transform.position) <= 1.5f)
+            bool a = Vector3.Distance(Player.transform.position, h.transform.position) <= 1.5f;
+            h.PromptObject.SetActive(a);
+            h.IsActive = a;
+        }
+        
+        // interact
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            foreach (Prompt pr in Prompts)
             {
-                h.PromptObject.SetActive(true);
+                if (pr.IsActive)
+                    pr.Interact();
             }
         }
     }
