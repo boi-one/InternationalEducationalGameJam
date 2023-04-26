@@ -11,6 +11,9 @@ public class Shovel : PromptAction
     public override void Interact()
     {
         Error.SendError("Shovel acquired!");
+        
+        Player.AcquiredItems.Add("Shovel");
+
         Destroy(gameObject);
     }
     public override void Approach() => Bubble.sprite = PromptSystem.BubbleClose;

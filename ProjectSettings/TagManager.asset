@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Train
+  - CamZoomArea
   layers:
   - Default
   - TransparentFX

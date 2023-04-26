@@ -11,6 +11,8 @@ public class TrainParenting : MonoBehaviour
     
     void Update()
     {
+        transform.Find("TrainInsideWall").gameObject.SetActive(t.HasTile(t.WorldToCell(Player.refer.transform.position)));
+        
         List<Transform> OurChildren = GetChildrenRecursive(transform);
         foreach (GameObject go in TakeWithTrain)
         {

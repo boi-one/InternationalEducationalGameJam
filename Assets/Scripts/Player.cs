@@ -1,13 +1,43 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class Player : MonoBehaviour
 {
+    // BagOfCoal
+    // Shovel
+    // Coal
+    public static readonly List<string> AcquiredItems = new List<string>();
+
+
+    public static Player refer;
+
+    List<Tilemap> Walls = new List<Tilemap>();
+
+    void Awake()
+    {
+        refer = this;
+        foreach (Tilemap t in GameObject.FindObjectsOfType<Tilemap>())
+        {
+            if (t.gameObject.name.StartsWith("Wall"))
+                Walls.Add(t);
+        }
+    }
+    
     public static bool CanMove = true;
     Vector3 dest;
     float destL = 0;
     void Update()
     {
+        bool a = false;
+        foreach (GameObject g in GameObject.FindGameObjectsWithTag("CamZoomArea"))
+        {
+            if (g.GetComponent<BoxCollider2D>().bounds.Contains(transform.position))
+                a=true;
+        }
+        Camera.main.orthographicSize = a ? 3f : 5.625f;
+        
         Vector3 dir = Vector3.zero;
         
         if (Input.GetKey(KeyCode.D))
@@ -25,10 +55,10 @@ public class Player : MonoBehaviour
     }
     void Move(Vector3 dir)
     {
-        Tilemap t = GameObject.Find("Map")?.transform.Find("Wall")?.GetComponent<Tilemap>();
-        if (t != null && t.HasTile(t.WorldToCell(transform.position + dir)))
+        // collision with walls
+        if (Walls.Any(t => t != null && t.HasTile(t.WorldToCell(transform.position + dir))))
             return;
-        
+
         if (destL != 0) return;
         dest = dir;
         destL = 1;
