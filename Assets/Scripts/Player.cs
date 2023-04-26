@@ -3,6 +3,7 @@ using UnityEngine.Tilemaps;
 
 public class Player : MonoBehaviour
 {
+    public static bool CanMove = true;
     Vector3 dest;
     float destL = 0;
     void Update()
@@ -17,8 +18,9 @@ public class Player : MonoBehaviour
             dir.y = 1;
         if (Input.GetKey(KeyCode.S))
             dir.y = -1;
-        
-        Move(dir);
+     
+        if (CanMove)
+            Move(dir);
         MoveUpdate();
     }
     void Move(Vector3 dir)
@@ -35,7 +37,7 @@ public class Player : MonoBehaviour
     {
         if (destL == 0) return;
 
-        float ma = 15f * Time.deltaTime;
+        float ma = 6f * Time.deltaTime;
 
         if (destL <= ma)
         {

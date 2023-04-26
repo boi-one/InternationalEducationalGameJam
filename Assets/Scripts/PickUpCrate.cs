@@ -21,4 +21,10 @@ public class PickUpCrate : PromptAction
                 gameObject.transform.parent = null;
         }
     }
+    public override void Approach()
+    {
+    }
+    public override void Leave()
+    {
+    }
 }

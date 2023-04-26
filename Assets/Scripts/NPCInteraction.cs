@@ -13,4 +13,10 @@ public class NPCInteraction : PromptAction
         dialogue.text = "Dialogue.Dialogue.Dialogue.Dialogue.Dialogue.Dialogue.Dialogue.Dialogue.Dialogue.Dialogue.Dialogue.Dialogue.Dialogue.Dialogue.";
         mark.SetActive(false);
     }
+    public override void Approach()
+    {
+    }
+    public override void Leave()
+    {
+    }
 }
