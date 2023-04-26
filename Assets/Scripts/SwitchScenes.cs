@@ -62,6 +62,10 @@ public class SwitchScenes : MonoBehaviour
                 Engine.EngineState = false;
                 FuelLevel.SetAmount(0);
                 Engine.fuelLeft = 0f;
+                if (Player.AcquiredItems.Contains("BagOfCoal"))
+                    Player.AcquiredItems.Remove("BagOfCoal");
+                if (Player.AcquiredItems.Contains("Coal"))
+                    Player.AcquiredItems.Remove("Coal");
 
                 // Move to start pos
                 gameObject.transform.position = new Vector3(StartPointsEndpoints[(int)currentScene].Item1, transform.position.y);
