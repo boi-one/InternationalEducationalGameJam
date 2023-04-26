@@ -18,11 +18,6 @@ public class Player : MonoBehaviour
     void Awake()
     {
         refer = this;
-        foreach (Tilemap t in GameObject.FindObjectsOfType<Tilemap>())
-        {
-            if (t.gameObject.name.StartsWith("Wall"))
-                Walls.Add(t);
-        }
     }
     
     public static bool CanMove = true;
@@ -57,7 +52,13 @@ public class Player : MonoBehaviour
     {
         if (Train.refer.run && (transform.position + dir).y > 2)
             return;
+        Walls.Clear();
         // collision with walls
+        foreach (Tilemap t in GameObject.FindObjectsOfType<Tilemap>())
+        {
+            if (t.gameObject.name.StartsWith("Wall"))
+                Walls.Add(t);
+        }
         if (Walls.Any(t => t != null && t.HasTile(t.WorldToCell(transform.position + dir))))
             return;
 

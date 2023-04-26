@@ -14,6 +14,7 @@ public class TrainControl : PromptAction
 
     public override void Interact()
     {
+
         if (Player.refer.transform.position.y > transform.position.y)
             Player.refer.transform.position = transform.position + new Vector3(-1, 0);
         
