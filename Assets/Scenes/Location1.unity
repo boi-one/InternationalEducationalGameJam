@@ -544,8 +544,6 @@ GameObject:
   - component: {fileID: 176862849}
   - component: {fileID: 176862848}
   - component: {fileID: 176862847}
-  - component: {fileID: 176862850}
-  - component: {fileID: 176862851}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -593,8 +591,8 @@ SpriteRenderer:
   m_SortingLayerID: -1435762313
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c22340e383b54c44196cb7765328e79d, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: fb97320e83d961e459615f11d1344564, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -633,34 +631,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &176862850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 176862846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14ad76e9a0f4317458064d7e41e0add4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wellgo: {fileID: 0}
-  minego: {fileID: 0}
-  UI: {fileID: 0}
-  pickup: 0
---- !u!114 &176862851
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 176862846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d321bb5ddd3fcc4aaeff20ee7f202b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &226024714
 GameObject:
   m_ObjectHideFlags: 0
