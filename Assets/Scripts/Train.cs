@@ -1,10 +1,12 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using Unity.Mathematics;
 
 public class Train : MonoBehaviour
 {
     public static Train refer;
-    
+    public GameObject Steam;
     public float velocity;
 
     public bool run
@@ -21,8 +23,36 @@ public class Train : MonoBehaviour
                 TrainControl.SR.sprite = TrainControl.refer.Sprites[0];
         }
     } bool _run = false;
-    
-    void Start() => refer = this;
+
+    void Start()
+    {
+        refer = this;
+
+        StartCoroutine(loop());
+        IEnumerator loop()
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(0.5f);
+                if (run==false)continue;
+                GameObject spawned = Instantiate(Steam, transform.position + new Vector3(11, 5), quaternion.identity);
+                spawned.SetActive(true);
+                StartCoroutine(goUpp(spawned));
+                Destroy(spawned, 5f);
+
+                IEnumerator goUpp(GameObject a)
+                {
+                    while (true)
+                    {
+                        yield return new WaitForSeconds(0.1f);
+                        if (a == null)break;
+                        a.transform.position += new Vector3(0, 0.1f, 0);
+                        a.transform.Rotate( new Vector3(0,0,1),UnityEngine.Random.Range(0f,1f));
+                    }
+                }
+            }
+        }
+    }
     void Update()
     {
         if (transform.Find("TrainInsideWall").gameObject.activeInHierarchy)
