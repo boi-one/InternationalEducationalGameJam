@@ -25,6 +25,11 @@ public class Train : MonoBehaviour
     void Start() => refer = this;
     void Update()
     {
+        if (transform.Find("TrainInsideWall").gameObject.activeInHierarchy)
+            transform.Find("TrainOutside").GetComponent<SpriteRenderer>().sortingOrder = -27;
+        else
+            transform.Find("TrainOutside").GetComponent<SpriteRenderer>().sortingOrder = 57;
+        
         if (run)
             AccelerateDeccelerate(2);
         else
