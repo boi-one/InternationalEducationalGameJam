@@ -59,7 +59,9 @@ public class SwitchScenes : MonoBehaviour
                 SceneManager.LoadScene((int)currentScene);
                 GameObject coalBox = GameObject.Find("CoalBox");
                 coalBox.GetComponent<CoalBox>().SR.sprite = coalBox.GetComponent<CoalBox>().Sprites[0];
+                Engine.EngineState = false;
                 FuelLevel.SetAmount(0);
+                Engine.fuelLeft = 0f;
 
                 // Move to start pos
                 gameObject.transform.position = new Vector3(StartPointsEndpoints[(int)currentScene].Item1, transform.position.y);

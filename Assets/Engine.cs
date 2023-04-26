@@ -24,7 +24,7 @@ public class Engine : PromptAction
             _engineState = value;
         }
     }static bool _engineState = false;
-    static float fuelLeft = 0f;
+    public static float fuelLeft = 0f;
     
     public override void Interact()
     {
