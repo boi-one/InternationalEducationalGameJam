@@ -86213,6 +86213,7 @@ MonoBehaviour:
   Sprites:
   - {fileID: 2070538699926015710, guid: e0a7e826aedad8b41a4e2e596e878e5f, type: 3}
   - {fileID: -5511659844979741837, guid: e0a7e826aedad8b41a4e2e596e878e5f, type: 3}
+  SR: {fileID: 0}
 --- !u!212 &9030698170432380207
 SpriteRenderer:
   m_ObjectHideFlags: 0
