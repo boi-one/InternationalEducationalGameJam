@@ -10,17 +10,22 @@ public class BagOfCoal : PromptAction
     
     public override void Interact()
     {
-        Error.SendError("Bag 'o COAL acquired!");
+        // Create trash
         GameObject trash = new GameObject("trash");
         trash.transform.position = transform.position;
         SpriteRenderer SR = trash.AddComponent<SpriteRenderer>();
         SR.sortingLayerName = "Player";
         SR.sprite = EmptyBag;
         
+        // Success
         Player.AcquiredItems.Add("BagOfCoal");
+        Error.SendError("Bag 'o COAL acquired!");
+
+        // Put exclamation mark on coal box
+        CoalBox.Bubble.sprite = PromptSystem.BubbleFar;
         
         Destroy(gameObject);
     }
     public override void Approach() => Bubble.sprite = PromptSystem.BubbleClose;
-    public override void Leave() => Bubble.sprite = PromptSystem.BubbleFar;
+    public override void Leave() => Bubble.sprite = null;
 }

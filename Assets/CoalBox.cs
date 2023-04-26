@@ -50,7 +50,17 @@ public class CoalBox : PromptAction
     }
     public override void Leave()
     {
-        if (!Player.AcquiredItems.Contains("BagOfCoal"))
+        bool ShouldAlert = false;
+        
+        // empty and player has BagOfCoal
+        if (Player.AcquiredItems.Contains("BagOfCoal") && SR.sprite == Sprites[0])
+            ShouldAlert = true;
+        // full and player has shovel with no coal
+        if (!Player.AcquiredItems.Contains("Coal") && Player.AcquiredItems.Contains("Shovel") && SR.sprite == Sprites[1])
+            ShouldAlert = true;
+        
+        
+        if (ShouldAlert)
             Bubble.sprite = PromptSystem.BubbleFar;
         else
             Bubble.sprite = null;
