@@ -4,6 +4,53 @@ using UnityEngine.UI;
 
 public class TransitionEffect : MonoBehaviour
 {
+    public static bool Zoomed
+    {
+        get => _Zoomed;
+        set
+        {
+            if (_Zoomed == value) return;
+            _Zoomed = value;
+
+            if (value)
+            {
+                refer.StartCoroutine(BRUH());
+                IEnumerator BRUH()
+                {
+                    Camera.main.orthographicSize /= 1.1f;
+                    yield return new WaitForSeconds(0.05f);
+                    Camera.main.orthographicSize /= 1.1f;
+                    yield return new WaitForSeconds(0.05f);
+                    Camera.main.orthographicSize /= 1.1f;
+                    yield return new WaitForSeconds(0.05f);
+                    Camera.main.orthographicSize /= 1.1f;
+                    yield return new WaitForSeconds(0.05f);
+                    Camera.main.orthographicSize /= 1.1f;
+                }
+            }
+            else
+            {
+                refer.StartCoroutine(BRUH());
+                IEnumerator BRUH()
+                {
+                    Camera.main.orthographicSize *= 1.1f;
+                    yield return new WaitForSeconds(0.05f);
+                    Camera.main.orthographicSize *= 1.1f;
+                    yield return new WaitForSeconds(0.05f);
+                    Camera.main.orthographicSize *= 1.1f;
+                    yield return new WaitForSeconds(0.05f);
+                    Camera.main.orthographicSize *= 1.1f;
+                    yield return new WaitForSeconds(0.05f);
+                    Camera.main.orthographicSize *= 1.1f;
+                }
+            }
+        }
+    }
+    //3f : 5.625f
+
+    public static bool _Zoomed = false;
+    
+    
     static TransitionEffect refer;
     static Image i;
 

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -31,7 +32,8 @@ public class Player : MonoBehaviour
             if (g.GetComponent<BoxCollider2D>().bounds.Contains(transform.position))
                 a=true;
         }
-        Camera.main.orthographicSize = a ? 3f : 5.625f;
+        TransitionEffect.Zoomed = a;
+        //Camera.main.orthographicSize = a ? 3f : 5.625f;
         
         Vector3 dir = Vector3.zero;
         

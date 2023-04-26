@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PromptSystem : MonoBehaviour
 {
+    public AudioClip interactSound;
     public static readonly List<Prompt> Prompts = new List<Prompt>();
     public static Sprite BubbleFar;
     public static Sprite BubbleClose;
@@ -50,6 +51,9 @@ public class PromptSystem : MonoBehaviour
 
         // interact
         if (Input.GetKeyDown(KeyCode.E) && CurrentlyViewedPrompt != null)
+        {
             CurrentlyViewedPrompt.Interact();
+            AudioSource.PlayClipAtPoint(interactSound, CurrentlyViewedPrompt.transform.position, 1f);
+        }
     }
 }
