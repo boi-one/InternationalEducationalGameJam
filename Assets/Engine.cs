@@ -5,17 +5,26 @@ using UnityEngine;
 public class Engine : PromptAction
 {
     SpriteRenderer Bubble;
-
+    public static Engine refer;
     void Awake()
     {
+        refer = this;
         Bubble = transform.Find("Bubble").GetComponent<SpriteRenderer>();
         EngineSR = transform.parent.Find("EngineSprite").GetComponent<SpriteRenderer>();
     }
 
     public Sprite[] EngineSprites;
     public SpriteRenderer EngineSR;
-    public static bool EngineState = false;
-    public static float FuelLevel = 0f;
+
+    public static bool EngineState
+    {
+        get => _engineState;
+        set
+        {
+            _engineState = value;
+        }
+    }static bool _engineState = false;
+    static float fuelLeft = 0f;
     
     public override void Interact()
     {
@@ -30,15 +39,26 @@ public class Engine : PromptAction
             return;
         }
         Player.AcquiredItems.Remove("Coal");
+        CoalBox.Bubble.sprite = PromptSystem.BubbleFar;
 
         Error.SendError("Adding coal into the oven... starting the engine...");
         EngineState = true;
         Bubble.sprite = null;
 
-        FuelLevel += 10f;
-        
-        
-        //IEnumerator
+        FuelLevel.Activate();
+        FuelLevel.SetAmount(1f);
+        fuelLeft = 1f;
+
+        StartCoroutine(FuelDrain());
+        IEnumerator FuelDrain()
+        {
+            while (fuelLeft > 0f)
+            {
+                fuelLeft -= 0.002f;
+                FuelLevel.SetAmount(fuelLeft);
+                yield return new WaitForSeconds(0.1f);
+            }
+        }
         
         StartCoroutine(EngineAnimation());
         IEnumerator EngineAnimation()
@@ -48,8 +68,6 @@ public class Engine : PromptAction
             EngineSR.sprite = EngineSprites[2];
             yield return new WaitForSeconds(0.5f);
 
-            
-            
             REPEAT:
             
             EngineSR.sprite = EngineSprites[3];
@@ -59,9 +77,27 @@ public class Engine : PromptAction
             EngineSR.sprite = EngineSprites[5];
             yield return new WaitForSeconds(0.1f);
 
+            if (fuelLeft < 0)
+                goto BREAK;
+
             goto REPEAT;
+            
+            BREAK:
+            EngineSR.sprite = EngineSprites[0];
+            fuelLeft = 0;
+            FuelLevel.SetAmount(0);
+            EngineState = false;
+            Error.SendError("Engine out of fuel!");
+            Train.refer.StopEngine();
         }
     }
     public override void Approach() => Bubble.sprite = PromptSystem.BubbleClose;
-    public override void Leave() => Bubble.sprite = PromptSystem.BubbleFar;
+
+    public override void Leave()
+    {
+        if (EngineState)
+            Bubble.sprite = null;
+        else
+            Bubble.sprite = PromptSystem.BubbleFar;
+    }
 }

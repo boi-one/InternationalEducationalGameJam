@@ -6,7 +6,22 @@ public class Train : MonoBehaviour
     public static Train refer;
     
     public float velocity;
-    public bool run = false;
+
+    public bool run
+    {
+        get => _run;
+        set
+        {
+            _run = value;
+            Engine.refer.transform.parent.Find("TrainInsideWallDoor").gameObject.SetActive(value);
+
+            if (value)
+                TrainControl.SR.sprite = TrainControl.refer.Sprites[1];
+            else 
+                TrainControl.SR.sprite = TrainControl.refer.Sprites[0];
+        }
+    } bool _run = false;
+    
     void Start() => refer = this;
     void Update()
     {

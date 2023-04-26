@@ -55,6 +55,8 @@ public class Player : MonoBehaviour
     }
     void Move(Vector3 dir)
     {
+        if (Train.refer.run && (transform.position + dir).y > 2)
+            return;
         // collision with walls
         if (Walls.Any(t => t != null && t.HasTile(t.WorldToCell(transform.position + dir))))
             return;
