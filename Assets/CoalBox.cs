@@ -5,7 +5,7 @@ public class CoalBox : PromptAction
     public Sprite[] Sprites;
 
     public static SpriteRenderer Bubble;
-    SpriteRenderer SR;
+    public SpriteRenderer SR;
     void Awake()
     {
         SR = GetComponent<SpriteRenderer>();
@@ -14,6 +14,7 @@ public class CoalBox : PromptAction
 
     public override void Interact()
     {
+        Player.AcquiredItems.Remove("Coal");
         // Box is empty
         if (SR.sprite == Sprites[0])
         {
@@ -22,6 +23,7 @@ public class CoalBox : PromptAction
                 Error.SendError("You need the bag of coal to fill this!");
                 return;
             }
+            Player.AcquiredItems.Remove("BagOfCoal");
             SR.sprite = Sprites[1];
             Error.SendError("Filled box with coal, ready to use..");
         }
