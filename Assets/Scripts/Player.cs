@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
     }
     void Move(Vector3 dir)
     {
-        if (Train.refer.run && (transform.position + dir).y > 2)
+        if (Train.refer.run && (transform.position + dir).y > 2.9f)
             return;
         Walls.Clear();
         // collision with walls
