@@ -7,8 +7,8 @@ public class SwitchScenes : MonoBehaviour
 {
     public static readonly List<(float, float)> StartPointsEndpoints = new List<(float, float)>()
     {
-        (-300,280), // in transit
         (0,130), // first
+        (-300,280), // in transit
         (-33.5f, 17.5f), // second
         (-33.5f, 17.5f), // third
         (-33.5f, 17.5f), // fourth
@@ -31,7 +31,7 @@ public class SwitchScenes : MonoBehaviour
             {
                 TransitionEffect.Activate();
                 yield return new WaitForSeconds(0.5f);
-                SceneManager.LoadScene(0);
+                SceneManager.LoadScene(1);
                 
                 // Move to start pos
                 gameObject.transform.position = new Vector3(StartPointsEndpoints[0].Item1, transform.position.y);
@@ -59,6 +59,7 @@ public class SwitchScenes : MonoBehaviour
                 SceneManager.LoadScene((int)currentScene);
                 GameObject coalBox = GameObject.Find("CoalBox");
                 coalBox.GetComponent<CoalBox>().SR.sprite = coalBox.GetComponent<CoalBox>().Sprites[0];
+                FuelLevel.SetAmount(0);
 
                 // Move to start pos
                 gameObject.transform.position = new Vector3(StartPointsEndpoints[(int)currentScene].Item1, transform.position.y);
@@ -71,8 +72,8 @@ public class SwitchScenes : MonoBehaviour
     }
     public enum Scenes
     {
-        TransitScene,
         location1,
+        TransitScene,
         location2,
         location3,
         location4,

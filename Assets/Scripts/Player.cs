@@ -25,6 +25,12 @@ public class Player : MonoBehaviour
     float destL = 0;
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            Application.Quit();
+        if (Input.GetKeyDown(KeyCode.D))
+            GetComponent<SpriteRenderer>().flipX = true;
+        else if (Input.GetKeyDown(KeyCode.A))
+            GetComponent<SpriteRenderer>().flipX = false;
         bool a = false;
         foreach (GameObject g in GameObject.FindGameObjectsWithTag("CamZoomArea"))
         {
